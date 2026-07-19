@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.22.1)
 project("mediaengine")
 
-# Automatically grab every .cpp file in this directory and its subdirectories
-file(GLOB_RECURSE SRC_FILES "*.cpp")
+# Anchor the search to the exact source directory to prevent CI build folder crashes
+file(GLOB_RECURSE SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
-# Build the shared hardware library using all found files
 add_library(mediaengine SHARED ${SRC_FILES})
 
 find_library(log-lib log)
